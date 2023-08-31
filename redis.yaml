@@ -1,0 +1,32 @@
+- name: Redis installation
+  hosts: redis
+  become: yes
+  tasks:
+  - name: install Redis repo
+    ansible.builtin.yum:
+      name: https://rpms.remirepo.net/enterprise/remi-release-8.rpm
+      state: installed
+
+  - name: Enable Redis 6.2
+    ansible.builtin.service:
+      name: Redis 6.2
+      enabled: yes
+
+  - name: Install Redis
+    ansible.builtin.yum:
+      name: redis
+      state: installed
+
+  - name: Allow remote connections to redis
+    ansible.builtin.replace:
+      path: /etc/redis.conf
+      regexp: '127.0.0.1'
+      replace: '0.0.0.0'
+
+  - name: Enable and start redis
+    ansible.builtin.service:
+      name: redis
+      state: started
+      enabled: yes
+    
+    

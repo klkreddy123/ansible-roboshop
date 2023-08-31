@@ -6,3 +6,9 @@ catalogue.kautomation.online
 
 [web]
 web.kautomation.online
+
+[redis]
+redis.kautomation.online
+
+[cart]
+cart.kautomation.online

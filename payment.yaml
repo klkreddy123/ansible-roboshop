@@ -7,4 +7,9 @@
     
     - name: check if roboshop user exists or not
       ansible.builtin.command: id roboshop
+      register: result
     
+    - when: result.rc !=0
+      name: Create roboshop user
+      ansible.builtin.user:
+      name: roboshop

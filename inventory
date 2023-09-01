@@ -12,3 +12,6 @@ redis.kautomation.online
 
 [cart]
 cart.kautomation.online
+
+[payments]
+payments.kautomation.online

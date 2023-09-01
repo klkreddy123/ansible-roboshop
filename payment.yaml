@@ -3,7 +3,13 @@
     become: yes
     tasks:
     - name: Install Python 3.6
-      ansible.builtin.command: "yum install python36 gcc python3-devel -y"
+      ansible.builtin.yum:
+       name: {{item}}
+       status: installed
+      loop:
+        - python36
+        - gcc
+        - python3-devel 
     
     - name: check if roboshop user exists or not
       ansible.builtin.command: id roboshop
